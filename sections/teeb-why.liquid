@@ -1,0 +1,206 @@
+{{ 'cro-enhancements.css' | asset_url | stylesheet_tag }}
+
+<section class="teeb-why" id="teeb-why-{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="teeb-why__header">
+        <h2 class="teeb-why__heading">{{ section.settings.heading }}</h2>
+        <div class="teeb-why__heading-line"></div>
+      </div>
+    {%- endif -%}
+
+    <div class="teeb-why__grid">
+      {%- for block in section.blocks -%}
+        <div class="teeb-why__col{% unless forloop.last %} teeb-why__col--divided{% endunless %}" {{ block.shopify_attributes }}>
+          <div class="teeb-why__icon" aria-hidden="true">✦</div>
+          <h3 class="teeb-why__col-heading">{{ block.settings.heading }}</h3>
+          {%- if block.settings.arabic != blank -%}
+            <p class="teeb-why__col-arabic teeb-arabic">{{ block.settings.arabic }}</p>
+          {%- endif -%}
+          <p class="teeb-why__col-body">{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .teeb-why {
+    background-color: var(--teeb-bg);
+    padding: 8rem 0;
+    border-top: 1px solid var(--teeb-border);
+    border-bottom: 1px solid var(--teeb-border);
+  }
+
+  .teeb-why__header {
+    text-align: center;
+    margin-bottom: 6rem;
+  }
+
+  .teeb-why__heading {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    color: var(--teeb-ink-mid);
+    margin: 0 0 2.4rem;
+    font-weight: 400;
+  }
+
+  .teeb-why__heading-line {
+    height: 1px;
+    background: var(--teeb-gold-line);
+    width: 40%;
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .teeb-why__heading-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--teeb-gold-dark);
+    background: var(--teeb-bg);
+  }
+
+  .teeb-why__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  @media (min-width: 750px) {
+    .teeb-why__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+  }
+
+  .teeb-why__col {
+    text-align: center;
+    padding: 0 3.6rem;
+  }
+
+  /* Gold vertical divider between columns */
+  @media (min-width: 750px) {
+    .teeb-why__col--divided {
+      border-right: 1px solid var(--teeb-border);
+    }
+  }
+
+  .teeb-why__icon {
+    font-size: 1.6rem;
+    color: var(--teeb-gold);
+    margin-bottom: 2rem;
+    display: block;
+    letter-spacing: 0.3em;
+  }
+
+  .teeb-why__col-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--teeb-gold-deep);
+    margin: 0 0 0.8rem;
+    font-weight: 700;
+  }
+
+  .teeb-why__col-arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 1.6rem;
+    color: var(--teeb-gold-dark);
+    direction: rtl;
+    margin: 0 0 1.2rem;
+    font-weight: 700;
+  }
+
+  .teeb-why__col-body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.45rem;
+    color: var(--teeb-ink-soft);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 28rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Teeb — Why Teeb",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Why Teeb"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Lasts All Day"
+        },
+        {
+          "type": "text",
+          "id": "arabic",
+          "label": "Arabic (optional)",
+          "default": "يدوم طوال اليوم"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Performance-backed — we guarantee longevity or we refund you. No questions asked."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Teeb — Why Teeb",
+      "blocks": [
+        {
+          "type": "pillar",
+          "settings": {
+            "heading": "Lasts All Day",
+            "arabic": "يدوم طوال اليوم",
+            "body": "Performance-backed — we guarantee longevity or we refund you. No questions asked."
+          }
+        },
+        {
+          "type": "pillar",
+          "settings": {
+            "heading": "Egyptian Roots",
+            "arabic": "جذور مصرية",
+            "body": "Inspired by Arabic fragrance tradition. Crafted for the modern Egyptian identity."
+          }
+        },
+        {
+          "type": "pillar",
+          "settings": {
+            "heading": "Your Scent Identity",
+            "arabic": "هويّتك العطرية",
+            "body": "4 distinct characters, each a world of its own. Find the one that speaks for you."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

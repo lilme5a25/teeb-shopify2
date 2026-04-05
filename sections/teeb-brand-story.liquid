@@ -1,0 +1,169 @@
+{{ 'cro-enhancements.css' | asset_url | stylesheet_tag }}
+
+<section class="teeb-brand-story" id="teeb-brand-story-{{ section.id }}">
+  <div class="teeb-brand-story__divider teeb-brand-story__divider--top"></div>
+
+  <div class="teeb-brand-story__inner page-width teeb-frame">
+    {%- if section.settings.arabic_name != blank -%}
+      <p class="teeb-brand-story__arabic teeb-arabic">{{ section.settings.arabic_name }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.arabic_meaning != blank -%}
+      <p class="teeb-brand-story__meaning">{{ section.settings.arabic_meaning }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.body != blank -%}
+      <p class="teeb-brand-story__body">{{ section.settings.body }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.guarantee != blank -%}
+      <p class="teeb-brand-story__guarantee">
+        <span class="teeb-brand-story__guarantee-mark">✦</span>
+        {{ section.settings.guarantee }}
+      </p>
+    {%- endif -%}
+  </div>
+
+  <div class="teeb-brand-story__divider teeb-brand-story__divider--bottom"></div>
+</section>
+
+<style>
+  .teeb-brand-story {
+    background-color: var(--teeb-bg-secondary);
+    padding: 7rem 0;
+    text-align: center;
+  }
+
+  .teeb-brand-story__divider {
+    height: 1px;
+    background: var(--teeb-gold-line);
+    position: relative;
+    margin: 0 auto;
+    max-width: 600px;
+    width: 80%;
+  }
+
+  .teeb-brand-story__divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--teeb-gold-dark);
+    background: var(--teeb-bg-secondary);
+  }
+
+  .teeb-brand-story__divider--top {
+    margin-bottom: 5rem;
+  }
+
+  .teeb-brand-story__divider--bottom {
+    margin-top: 5rem;
+  }
+
+  .teeb-brand-story__inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Corner frames — override teeb-frame colors for sand bg */
+  .teeb-brand-story__inner.teeb-frame::before,
+  .teeb-brand-story__inner.teeb-frame::after {
+    background: var(--teeb-bg-secondary);
+  }
+
+  .teeb-brand-story__arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: clamp(3.6rem, 7vw, 6rem);
+    font-weight: 700;
+    color: var(--teeb-gold-deep);
+    direction: rtl;
+    margin: 0 0 0.4rem;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+
+  .teeb-brand-story__meaning {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teeb-ink-muted);
+    margin: 0 0 3.2rem;
+  }
+
+  .teeb-brand-story__body {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+    color: var(--teeb-ink-mid);
+    line-height: 1.7;
+    margin: 0 0 2.4rem;
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .teeb-brand-story__guarantee {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teeb-gold-deep);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .teeb-brand-story__guarantee-mark {
+    color: var(--teeb-gold);
+    font-size: 1rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Teeb — Brand Story",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "arabic_name",
+      "label": "Arabic brand name",
+      "default": "طيب"
+    },
+    {
+      "type": "text",
+      "id": "arabic_meaning",
+      "label": "English meaning / subtitle",
+      "default": "Arabic for \"Good, Pure, Fragrant\""
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Brand story body",
+      "default": "We craft fragrances rooted in Egyptian identity — bold enough to be remembered, refined enough to be worn every day."
+    },
+    {
+      "type": "text",
+      "id": "guarantee",
+      "label": "Guarantee line",
+      "default": "Every bottle backed by our performance guarantee"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Teeb — Brand Story"
+    }
+  ]
+}
+{% endschema %}

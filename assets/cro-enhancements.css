@@ -1,4 +1,247 @@
 /* =============================================================================
+   TEEB DESIGN SYSTEM
+   Editorial Ivory Luxury — Light Theme
+   Warm ivory ground · Deep burgundy text · Gold as the only accent
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   Design Tokens
+   ----------------------------------------------------------------------------- */
+:root {
+  /* Backgrounds */
+  --teeb-bg:           #faf7f2;
+  --teeb-bg-secondary: #f5efe4;
+  --teeb-bg-card:      #ffffff;
+
+  /* Text */
+  --teeb-ink:          #0d0306;
+  --teeb-ink-mid:      #350b16;
+  --teeb-ink-soft:     #5a3d44;
+  --teeb-ink-muted:    #9a7880;
+
+  /* Gold Accent */
+  --teeb-gold:         #f0c417;
+  --teeb-gold-dark:    #b8922e;
+  --teeb-gold-deep:    #8a6d0a;
+
+  /* Borders */
+  --teeb-border:        rgba(184, 146, 46, 0.25);
+  --teeb-border-strong: rgba(184, 146, 46, 0.6);
+
+  /* Gradients */
+  --teeb-gold-line:     linear-gradient(90deg, transparent, #b8922e, transparent);
+  --teeb-gold-metallic: linear-gradient(180deg, #f5d24a 0%, #b8922e 60%, #8a6d0a 100%);
+
+  /* Per-product card tints */
+  --teeb-card-ighwa-bg:      #fffaed;
+  --teeb-card-ighwa-accent:  #8a6d0a;
+  --teeb-card-serr-bg:       #f2faf5;
+  --teeb-card-serr-accent:   #2d6b45;
+  --teeb-card-thelal-bg:     #fef8ee;
+  --teeb-card-thelal-accent: #7a5c00;
+  --teeb-card-thimar-bg:     #eef3fb;
+  --teeb-card-thimar-accent: #1a3a6b;
+}
+
+/* -----------------------------------------------------------------------------
+   Global Base — Ivory background, burgundy text, brand fonts
+   ----------------------------------------------------------------------------- */
+body {
+  background-color: var(--teeb-bg);
+  color: var(--teeb-ink-mid);
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4,
+.h1, .h2, .h3, .h4,
+.card__heading a,
+.card__heading,
+.product__title,
+.featured-collection__title,
+.collection__title,
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  color: var(--teeb-ink-mid);
+}
+
+p, li, label, span, .caption, .body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--teeb-ink-soft);
+}
+
+/* Arabic text — all elements with dir="rtl" or lang="ar" */
+[lang="ar"],
+[dir="rtl"],
+.teeb-arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+}
+
+/* -----------------------------------------------------------------------------
+   Page Backgrounds — override Dawn's color scheme whites to ivory
+   ----------------------------------------------------------------------------- */
+.color-background-1,
+.gradient {
+  background-color: var(--teeb-bg);
+}
+
+.color-background-2 {
+  background-color: var(--teeb-bg-secondary);
+}
+
+/* -----------------------------------------------------------------------------
+   Button System — primary: burgundy fill + gold text / ghost: gold border
+   ----------------------------------------------------------------------------- */
+
+/* Primary button */
+.button,
+.btn,
+button[type="submit"].button {
+  background-color: var(--teeb-ink-mid) !important;
+  color: var(--teeb-gold) !important;
+  border: 0.1rem solid var(--teeb-ink-mid) !important;
+  border-radius: 0 !important;
+  font-family: 'Open Sans', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.35em !important;
+  text-transform: uppercase !important;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease !important;
+}
+
+.button:hover,
+.btn:hover,
+button[type="submit"].button:hover {
+  background-color: transparent !important;
+  color: var(--teeb-ink-mid) !important;
+  border-color: var(--teeb-ink-mid) !important;
+}
+
+/* Secondary / ghost button */
+.button--secondary,
+.btn--secondary {
+  background-color: transparent !important;
+  color: var(--teeb-gold-deep) !important;
+  border: 0.1rem solid var(--teeb-gold-dark) !important;
+}
+
+.button--secondary:hover,
+.btn--secondary:hover {
+  background-color: var(--teeb-gold) !important;
+  color: var(--teeb-ink) !important;
+  border-color: var(--teeb-gold) !important;
+}
+
+/* -----------------------------------------------------------------------------
+   Brand Motifs
+   ----------------------------------------------------------------------------- */
+
+/* Gold corner frame — add class .teeb-frame to any container */
+.teeb-frame {
+  position: relative;
+}
+
+.teeb-frame::before,
+.teeb-frame::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-color: rgba(184, 146, 46, 0.5);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.teeb-frame::before {
+  top: 12px;
+  left: 12px;
+  border-width: 1px 0 0 1px;
+}
+
+.teeb-frame::after {
+  bottom: 12px;
+  right: 12px;
+  border-width: 0 1px 1px 0;
+}
+
+/* Gold divider with diamond center */
+.teeb-divider {
+  position: relative;
+  height: 1px;
+  background: var(--teeb-gold-line);
+  margin: 3.2rem auto;
+  width: 80%;
+  max-width: 600px;
+}
+
+.teeb-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--teeb-gold-dark);
+  background: var(--teeb-bg);
+}
+
+/* Announcement bar override — dark burgundy strip with gold text */
+.announcement-bar {
+  background-color: var(--teeb-ink-mid) !important;
+  color: var(--teeb-gold) !important;
+}
+
+.announcement-bar__message,
+.announcement-bar a {
+  color: var(--teeb-gold) !important;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.25em;
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* Header — ivory background with deep ink border */
+.header-wrapper,
+.header {
+  background-color: var(--teeb-bg) !important;
+  border-bottom: 1px solid var(--teeb-border) !important;
+}
+
+.header__heading-link,
+.header__menu-item,
+.header__icon,
+.header__icon svg {
+  color: var(--teeb-ink-mid) !important;
+  fill: var(--teeb-ink-mid) !important;
+}
+
+.header__menu-item:hover {
+  color: var(--teeb-gold-deep) !important;
+  text-decoration: none !important;
+}
+
+/* Price — gold deep */
+.price,
+.price__regular,
+.price-item--regular {
+  color: var(--teeb-gold-deep) !important;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+/* Section headings — Playfair italic accent */
+.featured-collection .title,
+.featured-collection h2 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--teeb-ink-mid);
+  letter-spacing: 0.02em;
+}
+
+/* =============================================================================
    CRO Enhancements — Phase 1
    Do NOT edit base.css or component files directly.
    All CRO additions live here to keep Dawn core files clean.
@@ -635,4 +878,566 @@
 .active-facets__button:hover .active-facets__button-inner {
   background: rgba(var(--color-foreground), 0.06);
   border-color: rgba(var(--color-foreground), 0.35);
+}
+
+/* =============================================================================
+   PHASE 2 — Hero Section (Editorial Ivory Luxury)
+   ============================================================================= */
+
+.banner {
+  background-color: var(--teeb-bg);
+}
+
+/* When no image — ivory with a subtle warm radial glow */
+.banner:not(:has(.banner__media img)) {
+  background: radial-gradient(ellipse 70% 70% at 50% 40%, rgba(53,11,22,0.06) 0%, transparent 70%), var(--teeb-bg);
+  min-height: 55rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Content box — transparent, centered, with corner frames */
+.banner__box {
+  background: transparent !important;
+  border: none !important;
+  padding: 5rem 3rem;
+  position: relative;
+  text-align: center;
+}
+
+/* Corner frames on hero content box */
+.banner__box::before,
+.banner__box::after {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-color: rgba(184, 146, 46, 0.5);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.banner__box::before {
+  top: 10px;
+  left: 10px;
+  border-width: 1px 0 0 1px;
+}
+
+.banner__box::after {
+  bottom: 10px;
+  right: 10px;
+  border-width: 0 1px 1px 0;
+}
+
+/* Hero heading — Playfair, large, ink color */
+.banner__heading {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(3.2rem, 6vw, 6rem) !important;
+  font-weight: 700 !important;
+  color: var(--teeb-ink-mid) !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0.01em !important;
+  margin-bottom: 1.6rem !important;
+}
+
+/* Hero subtext */
+.banner__text p {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--teeb-ink-soft);
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Hero buttons container */
+.banner__buttons {
+  margin-top: 2.4rem;
+  gap: 1.2rem;
+}
+
+/* Gold divider line below hero */
+.banner + * {
+  position: relative;
+}
+
+.banner + *::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: var(--teeb-gold-line);
+  margin-bottom: 4rem;
+}
+
+/* =============================================================================
+   PHASE 3 — Product Cards (Per-product tints + Arabic name)
+   ============================================================================= */
+
+/* Card inherits the per-product background from CSS custom property set inline */
+.card-wrapper {
+  background-color: var(--teeb-card-bg, var(--teeb-bg-card));
+  border-radius: 0;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-wrapper:hover {
+  box-shadow: 0 8px 40px rgba(184, 146, 46, 0.12);
+  transform: translateY(-3px);
+}
+
+/* Card inner — match background */
+.card,
+.card__inner {
+  background-color: var(--teeb-card-bg, var(--teeb-bg-card)) !important;
+}
+
+/* Card information area */
+.card__information {
+  background-color: var(--teeb-card-bg, var(--teeb-bg-card));
+  padding-bottom: 1.2rem;
+}
+
+/* Card heading — Playfair */
+.card__heading,
+.card__heading a {
+  font-family: 'Playfair Display', serif !important;
+  color: var(--teeb-ink-mid) !important;
+  font-size: 1.8rem !important;
+}
+
+.card__heading a:hover {
+  color: var(--teeb-card-accent, var(--teeb-gold-deep)) !important;
+  text-decoration: none !important;
+}
+
+/* Arabic name — uses per-product accent color */
+.card__arabic-name {
+  font-family: 'Noto Naskh Arabic', serif;
+  color: var(--teeb-card-accent, var(--teeb-gold-deep));
+  direction: rtl;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.2rem 0 0.8rem;
+  display: block;
+  line-height: 1.3;
+}
+
+/* Coming Soon badge — gold border, ivory bg, ink text */
+.badge--coming-soon {
+  background-color: var(--teeb-bg) !important;
+  color: var(--teeb-gold-deep) !important;
+  border: 1px solid var(--teeb-gold-dark) !important;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  border-radius: 0 !important;
+}
+
+/* Quick-add Coming Soon button state */
+.quick-add__submit[disabled] {
+  background-color: transparent !important;
+  border-color: var(--teeb-border-strong) !important;
+  color: var(--teeb-ink-muted) !important;
+  opacity: 1 !important;
+  letter-spacing: 0.2em;
+  font-size: 1.1rem !important;
+  cursor: default;
+}
+
+/* Card price — deep gold */
+.card-information .price,
+.card-information .price__regular,
+.card-information .price-item {
+  color: var(--teeb-gold-deep) !important;
+  font-family: 'Open Sans', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.6rem !important;
+}
+
+/* Thin gold border on card bottom */
+.card__content:last-child {
+  border-top: 1px solid var(--teeb-border);
+}
+
+/* =============================================================================
+   PHASE 4 — Footer (Dark Burgundy)
+   ============================================================================= */
+
+.footer {
+  background-color: var(--teeb-ink-mid) !important;
+  color: var(--teeb-off-white, rgba(255,255,255,0.85)) !important;
+  border-top: 1px solid rgba(184, 146, 46, 0.4);
+  position: relative;
+}
+
+/* Gold divider line at very top of footer */
+.footer::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: var(--teeb-gold-line);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.footer a,
+.footer .link,
+.footer .list-menu__item {
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover,
+.footer .link:hover,
+.footer .list-menu__item:hover {
+  color: var(--teeb-gold) !important;
+  text-decoration: none !important;
+}
+
+/* Footer headings */
+.footer .footer-block__heading,
+.footer h2 {
+  font-family: 'Playfair Display', serif !important;
+  color: var(--teeb-gold) !important;
+  font-size: 1.4rem !important;
+  letter-spacing: 0.08em;
+}
+
+/* Footer newsletter input */
+.footer .field__input {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(184, 146, 46, 0.4) !important;
+  color: var(--teeb-white) !important;
+  border-radius: 0 !important;
+}
+
+.footer .field__input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.footer .field__input:focus {
+  border-color: var(--teeb-gold) !important;
+  outline: none;
+}
+
+/* Newsletter submit arrow — gold */
+.footer .newsletter-form__button,
+.footer .field__button {
+  background: transparent !important;
+  color: var(--teeb-gold) !important;
+}
+
+.footer .newsletter-form__button svg,
+.footer .field__button svg {
+  fill: var(--teeb-gold) !important;
+}
+
+/* Social icons — ivory, gold on hover */
+.footer .social-icons .list-social__link,
+.footer .list-social__link {
+  color: rgba(255, 255, 255, 0.6) !important;
+  transition: color 0.2s ease;
+}
+
+.footer .list-social__link:hover {
+  color: var(--teeb-gold) !important;
+}
+
+/* Footer brand tagline above social */
+.footer-block__brand-info::before {
+  content: 'رائحتك.. هويّتك';
+  display: block;
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.8rem;
+  color: var(--teeb-gold);
+  direction: rtl;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.04em;
+}
+
+/* Footer policy links at bottom */
+.footer__content-bottom,
+.footer__content-bottom a {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 1.1rem;
+}
+
+.footer__content-bottom a:hover {
+  color: var(--teeb-gold) !important;
+}
+
+/* Payment icons — slightly reduced opacity on dark bg */
+.footer .list-payment__item {
+  opacity: 0.75;
+}
+
+/* =============================================================================
+   PHASE 4 — Header refinements
+   ============================================================================= */
+
+/* Navigation links — spaced, uppercase, brand font */
+.header__menu-item span,
+.header__menu-item .link {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+}
+
+/* Active nav item — gold accent */
+.header__menu-item--active span {
+  color: var(--teeb-gold-deep) !important;
+}
+
+/* Cart count bubble — gold bg */
+.cart-count-bubble {
+  background-color: var(--teeb-gold) !important;
+  color: var(--teeb-ink) !important;
+}
+
+/* Search and cart icons — ink color */
+.header__icon svg {
+  fill: var(--teeb-ink-mid);
+}
+
+/* =============================================================================
+   PHASE 6 — Collection Page
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   Collection Banner
+   ----------------------------------------------------------------------------- */
+.collection-hero {
+  background-color: var(--teeb-bg-secondary) !important;
+  padding: 5rem 0 4rem;
+  text-align: center;
+  border-bottom: 1px solid var(--teeb-border);
+}
+
+/* Arabic subtitle above the title */
+.collection-hero__arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--teeb-gold-deep);
+  direction: rtl;
+  margin: 0 0 0.6rem;
+  display: block;
+}
+
+/* Collection title — Playfair */
+.collection-hero__title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(3rem, 5vw, 5rem) !important;
+  font-weight: 700 !important;
+  color: var(--teeb-ink-mid) !important;
+  letter-spacing: 0.02em !important;
+  margin: 0 !important;
+}
+
+/* Gold divider below title */
+.collection-hero__divider {
+  height: 1px;
+  background: var(--teeb-gold-line);
+  width: 30%;
+  max-width: 240px;
+  margin: 2rem auto 0;
+  position: relative;
+}
+
+.collection-hero__divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--teeb-gold-dark);
+  background: var(--teeb-bg-secondary);
+}
+
+/* Collection description */
+.collection-hero__description {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--teeb-ink-soft);
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -----------------------------------------------------------------------------
+   Collection Grid Section Background
+   ----------------------------------------------------------------------------- */
+.section-collection-template,
+#ProductGridContainer,
+.collection {
+  background-color: var(--teeb-bg);
+}
+
+/* Empty state message */
+.collection--empty .title {
+  font-family: 'Playfair Display', serif;
+  color: var(--teeb-ink-mid);
+}
+
+/* -----------------------------------------------------------------------------
+   Filter Bar — Teeb Brand Colors
+   Replace Dawn's generic --color-foreground tokens with Teeb gold/burgundy
+   ----------------------------------------------------------------------------- */
+
+/* Filter wrapper bottom border */
+.facets-container {
+  border-bottom-color: var(--teeb-border) !important;
+}
+
+/* Filter label — "Filter:" */
+.facets__heading.caption-large,
+.facets__heading.caption-large.text-body {
+  color: var(--teeb-ink-muted) !important;
+}
+
+/* Filter pills — idle state */
+.facets__summary {
+  border-color: var(--teeb-border) !important;
+  color: var(--teeb-ink-mid) !important;
+  font-family: 'Open Sans', sans-serif !important;
+  background: transparent !important;
+}
+
+/* Filter pills — hover */
+.facets__summary:hover {
+  border-color: var(--teeb-gold-dark) !important;
+  background: rgba(184, 146, 46, 0.05) !important;
+  color: var(--teeb-ink-mid) !important;
+}
+
+/* Filter pills — open/active state */
+.facets__disclosure[open] > .facets__summary {
+  background: var(--teeb-ink-mid) !important;
+  color: var(--teeb-gold) !important;
+  border-color: var(--teeb-ink-mid) !important;
+}
+
+/* Active filter count badge inside pill */
+.facets__selected {
+  background: var(--teeb-gold) !important;
+  color: var(--teeb-ink) !important;
+}
+
+/* Dropdown panel */
+.facets__display {
+  background: var(--teeb-bg-card);
+  border-color: var(--teeb-border) !important;
+  box-shadow: 0 8px 32px rgba(53, 11, 22, 0.1) !important;
+}
+
+/* Checkboxes inside filter dropdown */
+.facets__item label {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--teeb-ink-soft);
+  font-size: 1.35rem;
+}
+
+.facets__item label:hover {
+  color: var(--teeb-ink-mid);
+}
+
+/* Checked state */
+.facets__checkbox:checked + .facets__label,
+.facets__item input:checked ~ label {
+  color: var(--teeb-gold-deep) !important;
+  font-weight: 600;
+}
+
+/* Sort label */
+.facet-filters__label.caption-large {
+  color: var(--teeb-ink-muted) !important;
+}
+
+/* Sort select pill */
+.facet-filters__summary {
+  border-color: var(--teeb-border) !important;
+  color: var(--teeb-ink-mid) !important;
+}
+
+.facet-filters__summary:hover {
+  border-color: var(--teeb-gold-dark) !important;
+  background: rgba(184, 146, 46, 0.05) !important;
+}
+
+.facet-filters__sort {
+  color: var(--teeb-ink-mid) !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+/* Active filter tags (below filter bar) */
+.active-facets__button-inner {
+  border-color: var(--teeb-border) !important;
+  color: var(--teeb-ink-soft) !important;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem;
+}
+
+.active-facets__button:hover .active-facets__button-inner {
+  border-color: var(--teeb-gold-dark) !important;
+  color: var(--teeb-ink-mid) !important;
+  background: rgba(184, 146, 46, 0.05) !important;
+}
+
+/* Remove all filters link */
+.active-facets__button--clear {
+  color: var(--teeb-gold-deep) !important;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+/* -----------------------------------------------------------------------------
+   Product Count
+   ----------------------------------------------------------------------------- */
+.product-count__text,
+.product-count-vertical .product-count__text {
+  color: var(--teeb-ink-muted) !important;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.12em !important;
+}
+
+/* -----------------------------------------------------------------------------
+   Pagination
+   ----------------------------------------------------------------------------- */
+.pagination__list {
+  gap: 0.6rem;
+}
+
+.pagination__item a,
+.pagination__item span {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--teeb-ink-mid);
+  border-color: var(--teeb-border);
+  border-radius: 0;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.pagination__item a:hover {
+  background: var(--teeb-ink-mid);
+  color: var(--teeb-gold);
+  border-color: var(--teeb-ink-mid);
+}
+
+.pagination__item--current a,
+.pagination__item--current span {
+  background: var(--teeb-ink-mid) !important;
+  color: var(--teeb-gold) !important;
+  border-color: var(--teeb-ink-mid) !important;
 }

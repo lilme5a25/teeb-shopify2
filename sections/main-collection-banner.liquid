@@ -1,5 +1,6 @@
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+{{ 'cro-enhancements.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   @media screen and (max-width: 749px) {
@@ -12,10 +13,14 @@
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     <div class="collection-hero__text-wrapper">
+      {%- if section.settings.arabic_subtitle != blank -%}
+        <p class="collection-hero__arabic teeb-arabic">{{ section.settings.arabic_subtitle }}</p>
+      {%- endif -%}
       <h1 class="collection-hero__title">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
         {{- collection.title | escape -}}
       </h1>
+      <div class="collection-hero__divider"></div>
 
       {%- if section.settings.show_collection_description -%}
         <div class="collection-hero__description rte">{{ collection.description }}</div>
@@ -53,6 +58,12 @@
     {
       "type": "paragraph",
       "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "text",
+      "id": "arabic_subtitle",
+      "label": "Arabic subtitle (optional)",
+      "default": "مجموعتنا"
     },
     {
       "type": "checkbox",
