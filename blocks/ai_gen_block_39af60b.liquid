@@ -1,0 +1,306 @@
+{% doc %}
+  @prompt
+    Create a smooth scrolling marquee for an announcement bar that continuously scrolls text from right to left. The marquee should have seamless looping animation, smooth movement, and work well for displaying promotional messages like "FREE DELIVERY ON ORDERS ABOVE 2000 EGP". Include customizable options for text content, scroll speed, and styling to match a luxury fragrance brand aesthetic.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-marquee-container-{{ ai_gen_id }} {
+    width: 100%;
+    overflow: hidden;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.vertical_padding }}px 0;
+    position: relative;
+    display: block;
+  }
+
+  .ai-marquee-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    width: fit-content;
+    will-change: transform;
+  }
+
+  .ai-marquee-content-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: ai-marquee-scroll-{{ ai_gen_id }} {{ block.settings.scroll_speed }}s linear infinite;
+  }
+
+  .ai-marquee-text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: {{ block.settings.font_weight }};
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    text-transform: {{ block.settings.text_transform }};
+    padding: 0 {{ block.settings.text_spacing }}px;
+  }
+
+  .ai-marquee-separator-{{ ai_gen_id }} {
+    color: {{ block.settings.separator_color }};
+    font-size: {{ block.settings.font_size }}px;
+    padding: 0 {{ block.settings.text_spacing }}px;
+  }
+
+  @keyframes ai-marquee-scroll-{{ ai_gen_id }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .ai-marquee-container-{{ ai_gen_id }}:hover .ai-marquee-content-{{ ai_gen_id }} {
+    animation-play-state: {{ block.settings.pause_on_hover }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-marquee-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.font_size | times: 0.85 }}px;
+    }
+
+    .ai-marquee-separator-{{ ai_gen_id }} {
+      font-size: {{ block.settings.font_size | times: 0.85 }}px;
+    }
+  }
+{% endstyle %}
+
+<marquee-announcement-{{ ai_gen_id }} class="ai-marquee-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-marquee-wrapper-{{ ai_gen_id }}">
+    <div class="ai-marquee-content-{{ ai_gen_id }}">
+      {% for i in (1..2) %}
+        <span class="ai-marquee-text-{{ ai_gen_id }}">{{ block.settings.announcement_text }}</span>
+        {% if block.settings.show_separator %}
+          <span class="ai-marquee-separator-{{ ai_gen_id }}">{{ block.settings.separator_symbol }}</span>
+        {% endif %}
+        <span class="ai-marquee-text-{{ ai_gen_id }}">{{ block.settings.announcement_text }}</span>
+        {% if block.settings.show_separator %}
+          <span class="ai-marquee-separator-{{ ai_gen_id }}">{{ block.settings.separator_symbol }}</span>
+        {% endif %}
+        <span class="ai-marquee-text-{{ ai_gen_id }}">{{ block.settings.announcement_text }}</span>
+        {% if block.settings.show_separator %}
+          <span class="ai-marquee-separator-{{ ai_gen_id }}">{{ block.settings.separator_symbol }}</span>
+        {% endif %}
+        <span class="ai-marquee-text-{{ ai_gen_id }}">{{ block.settings.announcement_text }}</span>
+        {% if block.settings.show_separator %}
+          <span class="ai-marquee-separator-{{ ai_gen_id }}">{{ block.settings.separator_symbol }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</marquee-announcement-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class MarqueeAnnouncement{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.setupMarquee();
+      }
+
+      setupMarquee() {
+        const wrapper = this.querySelector('.ai-marquee-wrapper-{{ ai_gen_id }}');
+        const content = this.querySelector('.ai-marquee-content-{{ ai_gen_id }}');
+        
+        if (!wrapper || !content) return;
+
+        const clone = content.cloneNode(true);
+        wrapper.appendChild(clone);
+      }
+    }
+
+    customElements.define('marquee-announcement-{{ ai_gen_id }}', MarqueeAnnouncement{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Announcement marquee",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "FREE DELIVERY ON ORDERS ABOVE 2000 EGP"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_separator",
+      "label": "Show separator",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "separator_symbol",
+      "label": "Separator symbol",
+      "default": "✦"
+    },
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "label": "Scroll speed",
+      "default": 30,
+      "info": "Lower values = faster scrolling"
+    },
+    {
+      "type": "select",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "options": [
+        {
+          "value": "paused",
+          "label": "Yes"
+        },
+        {
+          "value": "running",
+          "label": "No"
+        }
+      ],
+      "default": "paused"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter spacing",
+      "default": 1.5
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "text_spacing",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Text spacing",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#350b16"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement marquee"
+    }
+  ]
+}
+{% endschema %}
