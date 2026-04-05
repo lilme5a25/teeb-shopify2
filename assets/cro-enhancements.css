@@ -312,3 +312,92 @@
     display: none !important;
   }
 }
+
+/* =============================================================================
+   CRO Enhancements — Featured Product Animated Buttons
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   Keyframes
+   ----------------------------------------------------------------------------- */
+
+/* Shake: triggered on hover — subtle horizontal micro-wiggle */
+@keyframes btn-shake {
+  0%   { transform: translateX(0); }
+  15%  { transform: translateX(-4px) rotate(-0.5deg); }
+  30%  { transform: translateX(4px) rotate(0.5deg); }
+  45%  { transform: translateX(-3px); }
+  60%  { transform: translateX(3px); }
+  75%  { transform: translateX(-1px); }
+  90%  { transform: translateX(1px); }
+  100% { transform: translateX(0); }
+}
+
+/* Pulse: continuous gentle attention glow on the Buy Now button */
+@keyframes btn-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(var(--color-button), 0.45); transform: scale(1); }
+  50%  { box-shadow: 0 0 0 6px rgba(var(--color-button), 0); transform: scale(1.015); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--color-button), 0); transform: scale(1); }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .btn-shake-hover,
+  .btn-pulse {
+    animation: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   Animation utility classes
+   ----------------------------------------------------------------------------- */
+.btn-shake-hover {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-shake-hover:hover,
+.btn-shake-hover:focus-visible {
+  animation: btn-shake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.btn-pulse {
+  animation: btn-pulse 2.4s ease-in-out infinite;
+  animation-delay: 1.2s; /* stagger so it doesn't fire immediately on load */
+}
+
+.btn-pulse:hover,
+.btn-pulse:focus-visible {
+  animation: btn-shake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* -----------------------------------------------------------------------------
+   Featured card button layout
+   ----------------------------------------------------------------------------- */
+.featured-card-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.featured-card-buttons .form {
+  margin: 0;
+}
+
+.featured-card-buttons__atc,
+.featured-card-buttons__buy {
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 1rem 1.4rem;
+  letter-spacing: 0.04em;
+  /* reset any inherited animation so base transform is clean */
+  will-change: transform;
+}
+
+/* Buy Now is slightly more prominent — slightly bolder weight */
+.featured-card-buttons__buy {
+  font-weight: 700;
+}

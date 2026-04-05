@@ -567,6 +567,82 @@
             </div>
           {% endif %}
         {% endif %}
+
+        {%- if show_featured_buttons and card_product != blank -%}
+          {%- liquid
+            assign fc_variant = card_product.selected_or_first_available_variant
+            assign fc_form_id = 'featured-atc-' | append: section_id | append: '-' | append: card_product.id
+            assign fc_multi_variant = false
+            if card_product.variants.size > 1
+              assign fc_multi_variant = true
+            endif
+          -%}
+          <div class="featured-card-buttons no-js-hidden">
+            {%- if fc_multi_variant -%}
+              <a
+                href="{{ card_product.url }}"
+                class="featured-card-buttons__atc button button--full-width button--secondary btn-shake-hover"
+              >
+                {{- 'products.product.choose_options' | t -}}
+              </a>
+              <a
+                href="{{ card_product.url }}"
+                class="featured-card-buttons__buy button button--full-width button--primary btn-pulse"
+              >
+                View Product
+              </a>
+            {%- elsif fc_variant.available -%}
+              <product-form data-section-id="{{ section_id }}">
+                {%- form 'product',
+                  card_product,
+                  id: fc_form_id,
+                  class: 'form',
+                  novalidate: 'novalidate',
+                  data-type: 'add-to-cart-form'
+                -%}
+                  <input
+                    type="hidden"
+                    name="id"
+                    value="{{ fc_variant.id }}"
+                    class="product-variant-id"
+                  >
+                  <button
+                    id="{{ fc_form_id }}-submit"
+                    type="submit"
+                    name="add"
+                    class="featured-card-buttons__atc button button--full-width button--secondary btn-shake-hover"
+                    aria-live="polite"
+                    data-sold-out-message="true"
+                  >
+                    <span>{{- 'products.product.add_to_cart' | t -}}</span>
+                    <span class="sold-out-message hidden">{{- 'products.product.sold_out' | t -}}</span>
+                    {%- render 'loading-spinner' -%}
+                  </button>
+                {%- endform -%}
+              </product-form>
+              <form action="/cart/add" method="post" class="form">
+                <input type="hidden" name="id" value="{{ fc_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button
+                  type="submit"
+                  name="checkout"
+                  class="featured-card-buttons__buy button button--full-width button--primary btn-pulse"
+                >
+                  Buy Now
+                </button>
+              </form>
+            {%- else -%}
+              <button
+                type="button"
+                class="featured-card-buttons__atc button button--full-width button--secondary"
+                disabled
+              >
+                {{- 'products.product.sold_out' | t -}}
+              </button>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
         <div class="card__badge {{ settings.badge_position }}">
           {%- if card_product.available == false -%}
             <span
