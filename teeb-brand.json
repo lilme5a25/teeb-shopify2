@@ -1,0 +1,308 @@
+{
+  "brand": {
+    "name": "Teeb Fragrances",
+    "nameAr": "طيب",
+    "website": "teeb.shop",
+    "market": "Egypt",
+    "currency": "EGP"
+  },
+
+  "colors": {
+    "primary": {
+      "gold": {
+        "hex": "#f0c417",
+        "rgb": "240, 196, 23",
+        "role": "Main accent — CTAs, logo, highlights, borders"
+      },
+      "goldDark": {
+        "hex": "#b8922e",
+        "rgb": "184, 146, 46",
+        "role": "Gold shadow tone — bottle caps, gradients"
+      },
+      "goldDeep": {
+        "hex": "#8a6d0a",
+        "rgb": "138, 109, 10",
+        "role": "Darkest gold — depth in metallic elements"
+      },
+      "black": {
+        "hex": "#000000",
+        "rgb": "0, 0, 0",
+        "role": "Primary background — the foundation of all layouts"
+      }
+    },
+    "accent": {
+      "burgundy": {
+        "hex": "#350b16",
+        "rgb": "53, 11, 22",
+        "role": "Warm dark accent — used in background glows and depth layers"
+      },
+      "burgundyMid": {
+        "hex": "#1e0810",
+        "rgb": "30, 8, 16",
+        "role": "Mid burgundy — transitions and overlays"
+      },
+      "burgundyDeep": {
+        "hex": "#0d0306",
+        "rgb": "13, 3, 6",
+        "role": "Near-black burgundy — extreme depth"
+      }
+    },
+    "neutral": {
+      "white": {
+        "hex": "#ffffff",
+        "rgb": "255, 255, 255",
+        "role": "Headlines on dark backgrounds"
+      },
+      "offWhite": {
+        "hex": "rgba(255,255,255,0.85)",
+        "role": "Secondary text"
+      },
+      "subtle": {
+        "hex": "rgba(255,255,255,0.45)",
+        "role": "Supporting body copy, captions"
+      },
+      "ghost": {
+        "hex": "rgba(255,255,255,0.25)",
+        "role": "URLs, metadata, fine print"
+      }
+    },
+    "productVariants": {
+      "note": "Each product can carry its own accent while staying rooted in the core palette",
+      "ighwa": {
+        "accent": "#f0c417",
+        "bg": "#350b16",
+        "label": "Gold on Burgundy"
+      },
+      "thimar": {
+        "accent": "#a0c4f0",
+        "bg": "#0b1535",
+        "label": "Silver-Blue on Midnight"
+      },
+      "serr": {
+        "accent": "#a0f0b4",
+        "bg": "#1a2a0b",
+        "label": "Sage Green on Deep Forest"
+      },
+      "thelal": {
+        "accent": "#f0c417",
+        "bg": "#2a1a0b",
+        "label": "Gold on Amber Dark"
+      }
+    }
+  },
+
+  "gradients": {
+    "backgroundBase": {
+      "label": "Main background gradient",
+      "css": "radial-gradient(ellipse 60% 60% at 50% 30%, #350b16 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 80%, #1a0509 0%, transparent 60%), #000000",
+      "use": "Primary ad and page backgrounds"
+    },
+    "goldShimmer": {
+      "label": "Shimmer overlay",
+      "css": "linear-gradient(135deg, transparent 40%, rgba(240,196,23,0.03) 50%, transparent 60%)",
+      "use": "Animated gloss effect on backgrounds"
+    },
+    "goldLine": {
+      "label": "Horizontal gold rule",
+      "css": "linear-gradient(90deg, transparent, #f0c417, transparent)",
+      "use": "Dividers, section separators"
+    },
+    "goldLineFaded": {
+      "label": "Soft gold rule",
+      "css": "linear-gradient(90deg, transparent, rgba(240,196,23,0.5), transparent)",
+      "use": "Secondary dividers, card separators"
+    },
+    "goldVertical": {
+      "label": "Vertical accent line",
+      "css": "linear-gradient(180deg, transparent, rgba(240,196,23,0.2), transparent)",
+      "use": "Side decorative lines"
+    },
+    "goldMetallic": {
+      "label": "Metallic gold surface",
+      "css": "linear-gradient(180deg, #f5d24a 0%, #b8922e 60%, #8a6d0a 100%)",
+      "use": "Bottle caps, metallic elements, premium buttons"
+    },
+    "goldBase": {
+      "label": "Bottle base gradient",
+      "css": "linear-gradient(90deg, rgba(240,196,23,0.1), rgba(240,196,23,0.5), rgba(240,196,23,0.1))",
+      "use": "Bottle bases, shelf reflections"
+    },
+    "glassBottle": {
+      "label": "Luxury glass bottle fill",
+      "css": "linear-gradient(135deg, rgba(240,196,23,0.12) 0%, rgba(255,255,255,0.05) 15%, rgba(53,11,22,0.75) 40%, rgba(20,5,10,0.85) 65%, rgba(240,196,23,0.08) 100%)",
+      "use": "Bottle body illustration"
+    },
+    "glowOrb": {
+      "label": "Ambient glow behind hero element",
+      "css": "radial-gradient(circle, rgba(53,11,22,0.8) 0%, rgba(240,196,23,0.04) 40%, transparent 70%)",
+      "use": "Background aura behind bottles or product shots"
+    },
+    "vignetteBottom": {
+      "label": "Bottom text fade",
+      "css": "linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%)",
+      "use": "Story/Reel bottom overlay to keep text readable"
+    },
+    "ctaButton": {
+      "label": "CTA button fill",
+      "css": "linear-gradient(135deg, rgba(240,196,23,0.06), transparent)",
+      "border": "1px solid #f0c417",
+      "use": "Transparent gold-border buttons"
+    }
+  },
+
+  "typography": {
+    "display": {
+      "family": "Playfair Display",
+      "weights": [400, 700, 900],
+      "style": "serif, italic available",
+      "use": "English headlines, sub-headlines, elegant callouts"
+    },
+    "arabic": {
+      "family": "Noto Naskh Arabic",
+      "weights": [400, 700],
+      "style": "Arabic script, high legibility",
+      "use": "All Arabic text — headlines, product names, taglines"
+    },
+    "body": {
+      "family": "Open Sans",
+      "weights": [300, 400, 600],
+      "style": "sans-serif",
+      "use": "English body copy, labels, CTAs, metadata"
+    },
+    "scale": {
+      "heroAr": "80–90px",
+      "heroEn": "60–70px",
+      "headlineAr": "52–64px",
+      "headlineEn": "28–36px",
+      "productName": "24–28px",
+      "body": "14–18px",
+      "label": "11–14px",
+      "micro": "10–12px"
+    },
+    "letterSpacing": {
+      "tight": "2px — Arabic and serif headlines",
+      "normal": "3–4px — English body and sub-headlines",
+      "wide": "5–7px — Uppercase labels and CTAs",
+      "ultra": "8–12px — Logo tagline in English"
+    }
+  },
+
+  "motifs": {
+    "cornerFrame": {
+      "description": "Thin gold L-shaped corner brackets",
+      "size": "60–100px",
+      "border": "1px solid rgba(240,196,23,0.4–0.5)",
+      "use": "Frames ads, cards, and layouts — signals luxury packaging"
+    },
+    "goldDiamond": {
+      "description": "Small rotated square at divider center",
+      "size": "12–16px",
+      "border": "1px solid #f0c417",
+      "use": "Decorative mid-point on horizontal rules"
+    },
+    "ambientDots": {
+      "description": "Small scattered gold circles",
+      "size": "2–5px",
+      "opacity": "0.1–0.2",
+      "use": "Subtle depth and texture in dark backgrounds"
+    },
+    "bottleIllustration": {
+      "description": "CSS-drawn perfume bottles with glass, cap, shoulder, and base",
+      "style": "Transparent glass with gold accents, light reflection streak on left",
+      "use": "Product visual when photography isn't available"
+    }
+  },
+
+  "vibes": {
+    "primary": "Dark luxury",
+    "secondary": "Egyptian heritage meets modern minimalism",
+    "mood": [
+      "Mysterious",
+      "Confident",
+      "Warm",
+      "Premium",
+      "Intimate",
+      "Timeless"
+    ],
+    "notThese": [
+      "Flashy or loud",
+      "Overly ornate / maximalist",
+      "Cheap or discount-feeling",
+      "Cold or clinical",
+      "Generic Western luxury"
+    ],
+    "references": [
+      "Black velvet with gold thread",
+      "A perfume counter at night",
+      "Warm amber candlelight on glass",
+      "Arabic calligraphy on dark marble"
+    ]
+  },
+
+  "tone": {
+    "voice": "Confident, warm, honest",
+    "personality": [
+      "Trustworthy — never oversells, backs claims with guarantees",
+      "Sophisticated — speaks to quality, not price",
+      "Intimate — talks to the individual, not the crowd",
+      "Rooted — Arabic identity is a strength, not a footnote"
+    ],
+    "copyPrinciples": [
+      "Lead with identity and feeling, not features",
+      "Short, poetic Arabic lines pair with clean English",
+      "Never use discount language — position on value",
+      "Longevity and quality are the proof points",
+      "Always bilingual in Egyptian market ads"
+    ],
+    "taglines": {
+      "primary": {
+        "ar": "رائحتك.. هويّتك",
+        "en": "Your Scent. Your Identity."
+      },
+      "quality": {
+        "ar": "جودة أصيلة · عطور فاخرة · صُنع لك",
+        "en": "Authentic Quality · Luxury Fragrances · Made for You"
+      },
+      "launch": {
+        "ar": "إطلاق جديد",
+        "en": "New Collection"
+      }
+    },
+    "ctaCopy": {
+      "primary": { "en": "Shop Now", "ar": "تسوق الآن" },
+      "secondary": { "en": "Discover the Collection", "ar": "اكتشف المجموعة" },
+      "urgency": { "en": "Limited — Order Now", "ar": "كميات محدودة — اطلب الآن" }
+    }
+  },
+
+  "adSpecs": {
+    "feed": {
+      "size": "1080×1080px",
+      "ratio": "1:1",
+      "use": "Facebook Feed, Instagram Feed"
+    },
+    "story": {
+      "size": "1080×1920px",
+      "ratio": "9:16",
+      "use": "Instagram Stories, Facebook Stories, Reels"
+    },
+    "carousel": {
+      "cardSize": "1080×1080px",
+      "ratio": "1:1",
+      "minCards": 2,
+      "maxCards": 10,
+      "use": "Product showcase — one card per fragrance"
+    },
+    "safeZone": {
+      "story": "Keep all critical content within center 1080×1420px (250px top/bottom margin for UI chrome)",
+      "feed": "Keep logos and CTAs 60px from all edges"
+    }
+  },
+
+  "products": [
+    { "nameAr": "إغواء", "nameEn": "Ighwa",  "price": 899, "currency": "EGP", "accentColor": "#f0c417", "bgColor": "#350b16" },
+    { "nameAr": "سِر",   "nameEn": "Serr",   "price": 799, "currency": "EGP", "accentColor": "#a0f0b4", "bgColor": "#1a2a0b" },
+    { "nameAr": "ظلال",  "nameEn": "Thelal", "price": 849, "currency": "EGP", "accentColor": "#f0c417", "bgColor": "#2a1a0b" },
+    { "nameAr": "ثمار",  "nameEn": "Thimar", "price": 899, "currency": "EGP", "accentColor": "#a0c4f0", "bgColor": "#0b1535" }
+  ]
+}

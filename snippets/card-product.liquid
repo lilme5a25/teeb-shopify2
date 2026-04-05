@@ -27,6 +27,7 @@
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+  {{ 'cro-enhancements.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
 {%- if card_product and card_product != empty -%}
   {%- liquid
@@ -137,7 +138,25 @@
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                 class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
               >
-                {{- 'products.product.on_sale' | t -}}
+                {%- if card_product.price_varies == false -%}
+                  {%- assign card_savings_1 = card_product.compare_at_price | minus: card_product.price -%}
+                  {%- assign card_discount_pct_1 = card_savings_1 | times: 100 | divided_by: card_product.compare_at_price -%}
+                  -{{ card_discount_pct_1 }}%
+                {%- else -%}
+                  {{- 'products.product.on_sale' | t -}}
+                {%- endif -%}
+              </span>
+            {%- liquid
+              assign card_variant_1 = card_product.selected_or_first_available_variant
+              if card_variant_1.inventory_management == 'shopify' and card_variant_1.inventory_policy != 'continue'
+                if card_variant_1.inventory_quantity > 0 and card_variant_1.inventory_quantity <= 5
+                  assign show_card_low_stock_1 = true
+                endif
+              endif
+            -%}
+            {%- if show_card_low_stock_1 -%}
+              <span class="badge badge--bottom-left badge--low-stock">
+                Only {{ card_variant_1.inventory_quantity }} left!
               </span>
             {%- endif -%}
           </div>
@@ -561,7 +580,25 @@
               id="Badge-{{ section_id }}-{{ card_product.id }}"
               class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
             >
-              {{- 'products.product.on_sale' | t -}}
+              {%- if card_product.price_varies == false -%}
+                {%- assign card_savings_2 = card_product.compare_at_price | minus: card_product.price -%}
+                {%- assign card_discount_pct_2 = card_savings_2 | times: 100 | divided_by: card_product.compare_at_price -%}
+                -{{ card_discount_pct_2 }}%
+              {%- else -%}
+                {{- 'products.product.on_sale' | t -}}
+              {%- endif -%}
+            </span>
+          {%- liquid
+            assign card_variant_2 = card_product.selected_or_first_available_variant
+            if card_variant_2.inventory_management == 'shopify' and card_variant_2.inventory_policy != 'continue'
+              if card_variant_2.inventory_quantity > 0 and card_variant_2.inventory_quantity <= 5
+                assign show_card_low_stock_2 = true
+              endif
+            endif
+          -%}
+          {%- if show_card_low_stock_2 -%}
+            <span class="badge badge--bottom-left badge--low-stock">
+              Only {{ card_variant_2.inventory_quantity }} left!
             </span>
           {%- endif -%}
         </div>

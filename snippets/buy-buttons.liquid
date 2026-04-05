@@ -1,3 +1,4 @@
+{{ 'cro-enhancements.css' | asset_url | stylesheet_tag }}
 {% comment %}
   Renders product buy-buttons.
   Accepts:
@@ -70,6 +71,28 @@
               assign quantity_rule_soldout = true
             endif
           -%}
+
+          {%- liquid
+            assign low_stock_threshold = 5
+            assign pdp_variant = product.selected_or_first_available_variant
+            assign show_low_stock = false
+            if pdp_variant.inventory_management == 'shopify' and pdp_variant.inventory_policy != 'continue'
+              if pdp_variant.inventory_quantity > 0 and pdp_variant.inventory_quantity <= low_stock_threshold
+                assign show_low_stock = true
+              endif
+            endif
+          -%}
+          {%- if show_low_stock -%}
+            <p
+              class="product__low-stock"
+              id="LowStockBadge-{{ section_id }}"
+              aria-live="polite"
+            >
+              <span class="svg-wrapper">{{- 'icon-fire.svg' | inline_asset_content -}}</span>
+              Only {{ pdp_variant.inventory_quantity }} left — order soon!
+            </p>
+          {%- endif -%}
+
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
@@ -99,6 +122,8 @@
         </div>
       {%- endform -%}
     </product-form>
+
+    {% render 'trust-signals' %}
   {%- else -%}
     <div class="product-form">
       <div class="product-form__buttons form">

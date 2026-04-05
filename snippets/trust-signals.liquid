@@ -1,0 +1,40 @@
+{% comment %}
+  Renders a trust signals strip below the add-to-cart button.
+  Includes: secure checkout, free returns, fast shipping, payment icons.
+  No parameters required.
+  Usage: {% render 'trust-signals' %}
+{% endcomment %}
+
+<div class="trust-signals" aria-label="Trust badges">
+  <div class="trust-signals__item">
+    <span class="svg-wrapper">
+      {{- 'icon-lock.svg' | inline_asset_content -}}
+    </span>
+    <span>Secure Checkout</span>
+  </div>
+
+  <div class="trust-signals__item">
+    <span class="svg-wrapper">
+      {{- 'icon-return.svg' | inline_asset_content -}}
+    </span>
+    <span>Easy Returns</span>
+  </div>
+
+  <div class="trust-signals__item">
+    <span class="svg-wrapper">
+      {{- 'icon-truck.svg' | inline_asset_content -}}
+    </span>
+    <span>Fast Shipping</span>
+  </div>
+
+  {%- if shop.enabled_payment_types.size > 0 -%}
+    <div class="trust-signals__payment">
+      <p class="trust-signals__payment-label">We accept</p>
+      <div class="trust-signals__payment-icons">
+        {%- for type in shop.enabled_payment_types -%}
+          {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>

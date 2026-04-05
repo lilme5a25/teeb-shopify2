@@ -1,0 +1,102 @@
+/* =============================================================================
+   CRO Enhancements — Phase 1
+   Do NOT edit base.css or component files directly.
+   All CRO additions live here to keep Dawn core files clean.
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   1. Discount % Badge
+   ----------------------------------------------------------------------------- */
+.badge--discount {
+  background-color: rgb(var(--color-sale-badge-background));
+  color: rgb(var(--color-sale-badge-foreground));
+}
+
+/* -----------------------------------------------------------------------------
+   2. Trust Signals Strip
+   ----------------------------------------------------------------------------- */
+.trust-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-top: 1.8rem;
+  padding-top: 1.6rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.trust-signals__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  opacity: 0.75;
+  flex: 1 1 auto;
+  min-width: 12rem;
+}
+
+.trust-signals__item .svg-wrapper svg,
+.trust-signals__item .svg-wrapper {
+  width: 1.8rem;
+  height: 1.8rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.trust-signals__payment {
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.06);
+  width: 100%;
+}
+
+.trust-signals__payment-label {
+  font-size: 1.1rem;
+  opacity: 0.55;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.trust-signals__payment-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.trust-signals__payment-icons .icon--full-color {
+  height: 2.4rem;
+  width: auto;
+  border-radius: 0.3rem;
+}
+
+/* -----------------------------------------------------------------------------
+   3. Low-Stock Urgency Badge
+   ----------------------------------------------------------------------------- */
+.product__low-stock {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #c0392b;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(192, 57, 43, 0.07);
+  border-radius: var(--inputs-radius, 0.4rem);
+}
+
+.product__low-stock .svg-wrapper,
+.product__low-stock .svg-wrapper svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+}
+
+.badge--low-stock {
+  background-color: #c0392b;
+  color: #ffffff;
+  margin-top: 0.4rem;
+}
