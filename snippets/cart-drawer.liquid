@@ -7,9 +7,11 @@
 
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'cro-enhancements.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart-upsell.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .drawer {
@@ -74,6 +76,42 @@
           </span>
         </button>
       </div>
+      {%- if settings.free_shipping_threshold and settings.free_shipping_threshold > 0 and cart != empty -%}
+        {%- liquid
+          assign threshold_cents = settings.free_shipping_threshold | times: 100
+          assign cart_total = cart.total_price
+          assign remaining_cents = threshold_cents | minus: cart_total
+          if remaining_cents < 0
+            assign remaining_cents = 0
+          endif
+          assign progress_pct = cart_total | times: 100 | divided_by: threshold_cents
+          if progress_pct > 100
+            assign progress_pct = 100
+          endif
+        -%}
+        <div class="cart-drawer__shipping-bar" id="CartDrawer-ShippingBar" aria-live="polite">
+          {%- if remaining_cents == 0 -%}
+            <p class="cart-drawer__shipping-bar-text cart-drawer__shipping-bar-text--success">
+              <span class="svg-wrapper">{{- 'icon-checkmark.svg' | inline_asset_content -}}</span>
+              You've unlocked free shipping!
+            </p>
+          {%- else -%}
+            <p class="cart-drawer__shipping-bar-text">
+              Spend <strong>{{ remaining_cents | money }}</strong> more for free shipping
+            </p>
+          {%- endif -%}
+          <div
+            class="cart-drawer__shipping-progress"
+            role="progressbar"
+            aria-valuenow="{{ progress_pct }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div class="cart-drawer__shipping-progress-fill" style="width: {{ progress_pct }}%"></div>
+          </div>
+        </div>
+      {%- endif -%}
+
       <cart-drawer-items
         {% if cart == empty %}
           class=" is-empty"
@@ -475,6 +513,20 @@
         </form>
       </cart-drawer-items>
       <div class="drawer__footer">
+        {%- if cart != empty -%}
+          <div
+            id="CartDrawer-Upsell"
+            class="cart-drawer__upsell"
+            data-product-id="{{ cart.items.first.product_id }}"
+            data-money-format="{{ shop.money_format | escape }}"
+          >
+            <div class="cart-drawer__upsell-inner" hidden>
+              <h3 class="cart-drawer__upsell-heading caption-with-letter-spacing">You might also like</h3>
+              <ul class="cart-drawer__upsell-list list-unstyled" role="list"></ul>
+            </div>
+          </div>
+        {%- endif -%}
+
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">
             <summary>

@@ -100,3 +100,215 @@
   color: #ffffff;
   margin-top: 0.4rem;
 }
+
+/* =============================================================================
+   CRO Enhancements — Phase 2
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   4. Free Shipping Progress Bar
+   ----------------------------------------------------------------------------- */
+.cart-drawer__shipping-bar {
+  padding: 1rem 1.5rem 1.2rem;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  background: rgba(var(--color-foreground), 0.02);
+}
+
+.cart-drawer__shipping-bar-text {
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 0 0 0.8rem;
+  line-height: 1.4;
+}
+
+.cart-drawer__shipping-bar-text strong {
+  font-weight: 700;
+}
+
+.cart-drawer__shipping-bar-text--success {
+  color: rgb(30, 160, 80);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.cart-drawer__shipping-bar-text--success .svg-wrapper,
+.cart-drawer__shipping-bar-text--success .svg-wrapper svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+}
+
+.cart-drawer__shipping-progress {
+  height: 0.6rem;
+  background-color: rgba(var(--color-foreground), 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.cart-drawer__shipping-progress-fill {
+  height: 100%;
+  background-color: rgb(var(--color-button));
+  border-radius: 99px;
+  transition: width 0.5s ease;
+  min-width: 0.4rem;
+}
+
+/* -----------------------------------------------------------------------------
+   5. Cart Upsell Section
+   ----------------------------------------------------------------------------- */
+.cart-drawer__upsell {
+  padding: 1.2rem 0 0;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  margin-bottom: 0.4rem;
+}
+
+.cart-drawer__upsell-inner {
+  padding: 0 1.5rem 1.2rem;
+}
+
+.cart-drawer__upsell-heading {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  opacity: 0.6;
+}
+
+.cart-drawer__upsell-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-drawer__upsell-item {
+  list-style: none;
+}
+
+.cart-drawer__upsell-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--media-radius, 0.4rem);
+  padding: 0.4rem;
+  transition: background 0.15s ease;
+}
+
+.cart-drawer__upsell-link:hover {
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.cart-drawer__upsell-image {
+  width: 5.6rem;
+  height: 5.6rem;
+  object-fit: cover;
+  border-radius: var(--media-radius, 0.4rem);
+  flex-shrink: 0;
+}
+
+.cart-drawer__upsell-info {
+  min-width: 0;
+}
+
+.cart-drawer__upsell-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0 0 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-drawer__upsell-price {
+  font-size: 1.2rem;
+  margin: 0;
+  opacity: 0.7;
+}
+
+/* -----------------------------------------------------------------------------
+   6. Sticky Mobile ATC Bar
+   ----------------------------------------------------------------------------- */
+.sticky-atc-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding: 1rem 0;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -0.2rem 1.2rem rgba(0, 0, 0, 0.1);
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  transform: translateY(110%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.sticky-atc-bar.is-visible {
+  transform: translateY(0);
+}
+
+.sticky-atc-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.sticky-atc-bar__product-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.sticky-atc-bar__image {
+  width: 4.8rem;
+  height: 4.8rem;
+  object-fit: cover;
+  border-radius: var(--media-radius, 0.4rem);
+  flex-shrink: 0;
+}
+
+.sticky-atc-bar__text {
+  min-width: 0;
+}
+
+.sticky-atc-bar__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticky-atc-bar__price .price {
+  font-size: 1.3rem;
+}
+
+.sticky-atc-bar__price .price__container {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+}
+
+.sticky-atc-bar__button {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 1.3rem;
+  padding: 1rem 1.8rem;
+}
+
+/* Desktop: hide entirely — the sticky info panel handles larger screens */
+@media screen and (min-width: 750px) {
+  .sticky-atc-bar {
+    display: none !important;
+  }
+}

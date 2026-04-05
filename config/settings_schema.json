@@ -1449,6 +1449,17 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      },
+      {
+        "type": "header",
+        "content": "Free Shipping Bar"
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold (in your store currency)",
+        "info": "Enter the minimum order amount for free shipping (e.g. 50 for $50). Set to 0 or leave blank to hide the progress bar.",
+        "default": 0
       }
     ]
   }

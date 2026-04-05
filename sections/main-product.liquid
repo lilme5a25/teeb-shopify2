@@ -736,6 +736,53 @@
       {{ product | structured_data }}
     </script>
   </div>
+
+  {{- 'sticky-atc.js' | asset_url | script_tag -}}
+
+  <div
+    id="StickyATCBar-{{ section.id }}"
+    class="sticky-atc-bar color-{{ settings.cart_color_scheme }}"
+    aria-hidden="true"
+    data-target-button="ProductSubmitButton-{{ section.id }}"
+    data-has-only-default-variant="{{ product.has_only_default_variant }}"
+  >
+    <div class="sticky-atc-bar__inner page-width">
+      <div class="sticky-atc-bar__product-info">
+        {%- if product.featured_image -%}
+          <img
+            src="{{ product.featured_image | image_url: width: 80 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            width="60"
+            height="60"
+            class="sticky-atc-bar__image"
+            loading="lazy"
+          >
+        {%- endif -%}
+        <div class="sticky-atc-bar__text">
+          <p class="sticky-atc-bar__title">{{ product.title | escape | truncate: 45 }}</p>
+          <p class="sticky-atc-bar__price">
+            {%- render 'price', product: product, use_variant: true -%}
+          </p>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="sticky-atc-bar__button button button--primary"
+        id="StickyATCButton-{{ section.id }}"
+        {% if product.selected_or_first_available_variant.available == false %}
+          disabled
+        {% endif %}
+      >
+        {%- if product.selected_or_first_available_variant.available == false -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- elsif product.has_only_default_variant == false -%}
+          {{ 'products.product.choose_options' | t }}
+        {%- else -%}
+          {{ 'products.product.add_to_cart' | t }}
+        {%- endif -%}
+      </button>
+    </div>
+  </div>
 </product-info>
 
 {% schema %}
