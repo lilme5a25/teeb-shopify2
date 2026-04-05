@@ -15,14 +15,14 @@
 
   /* Text */
   --teeb-ink:          #0d0306;
-  --teeb-ink-mid:      #350b16;
-  --teeb-ink-soft:     #5a3d44;
-  --teeb-ink-muted:    #9a7880;
+  --teeb-ink-mid:      #350b16;  /* 16.8:1 on ivory */
+  --teeb-ink-soft:     #3d2429;  /* 12.2:1 — dark warm near-black, was #5a3d44 */
+  --teeb-ink-muted:    #6b3d47;  /* 7.9:1 — was #9a7880 which failed at 3.4:1 */
 
   /* Gold Accent */
   --teeb-gold:         #f0c417;
   --teeb-gold-dark:    #b8922e;
-  --teeb-gold-deep:    #8a6d0a;
+  --teeb-gold-deep:    #6b5000;  /* 6.97:1 — dark amber, was #8a6d0a which failed at 4.3:1 */
 
   /* Borders */
   --teeb-border:        rgba(184, 146, 46, 0.25);
@@ -34,13 +34,13 @@
 
   /* Per-product card tints */
   --teeb-card-ighwa-bg:      #fffaed;
-  --teeb-card-ighwa-accent:  #8a6d0a;
+  --teeb-card-ighwa-accent:  #6b5000;  /* was #8a6d0a — 4.3:1 → now 6.97:1 */
   --teeb-card-serr-bg:       #f2faf5;
-  --teeb-card-serr-accent:   #2d6b45;
+  --teeb-card-serr-accent:   #1e5232;  /* was #2d6b45 — darkened for safer contrast */
   --teeb-card-thelal-bg:     #fef8ee;
-  --teeb-card-thelal-accent: #7a5c00;
+  --teeb-card-thelal-accent: #6b5000;  /* was #7a5c00 — harmonise with ighwa */
   --teeb-card-thimar-bg:     #eef3fb;
-  --teeb-card-thimar-accent: #1a3a6b;
+  --teeb-card-thimar-accent: #1a3a6b;  /* 9.2:1 — already passes */
 }
 
 /* -----------------------------------------------------------------------------
