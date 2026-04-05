@@ -896,13 +896,12 @@ button[type="submit"].button:hover {
   align-items: center;
 }
 
-/* Content box — transparent, centered, with corner frames */
+/* Content box — base layout, no background (set per context below) */
 .banner__box {
-  background: transparent !important;
-  border: none !important;
   padding: 5rem 3rem;
   position: relative;
   text-align: center;
+  border: none !important;
 }
 
 /* Corner frames on hero content box */
@@ -912,9 +911,9 @@ button[type="submit"].button:hover {
   position: absolute;
   width: 70px;
   height: 70px;
-  border-color: rgba(184, 146, 46, 0.5);
   border-style: solid;
   pointer-events: none;
+  z-index: 2;
 }
 
 .banner__box::before {
@@ -929,12 +928,79 @@ button[type="submit"].button:hover {
   border-width: 0 1px 1px 0;
 }
 
-/* Hero heading — Playfair, large, ink color */
+/* --- NO IMAGE: ivory box, dark text --- */
+.banner:not(:has(.banner__media img)) .banner__box {
+  background: transparent !important;
+}
+
+.banner:not(:has(.banner__media img)) .banner__box::before,
+.banner:not(:has(.banner__media img)) .banner__box::after {
+  border-color: rgba(184, 146, 46, 0.5);
+}
+
+.banner:not(:has(.banner__media img)) .banner__heading {
+  color: var(--teeb-ink-mid) !important;
+}
+
+.banner:not(:has(.banner__media img)) .banner__text p {
+  color: var(--teeb-ink-soft) !important;
+}
+
+/* --- WITH IMAGE: dark box, white/gold text — always readable on any photo --- */
+.banner:has(.banner__media img) .banner__box {
+  background: rgba(13, 3, 6, 0.78) !important;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 1px solid rgba(240, 196, 23, 0.2) !important;
+}
+
+.banner:has(.banner__media img) .banner__box::before,
+.banner:has(.banner__media img) .banner__box::after {
+  border-color: rgba(240, 196, 23, 0.55);
+}
+
+.banner:has(.banner__media img) .banner__heading {
+  color: #ffffff !important;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+}
+
+.banner:has(.banner__media img) .banner__text p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* CTA button: bright gold fill on dark hero — 15:1 contrast */
+.banner:has(.banner__media img) .button,
+.banner:has(.banner__media img) .button--primary {
+  background: var(--teeb-gold) !important;
+  color: var(--teeb-ink) !important;
+  border-color: var(--teeb-gold) !important;
+  font-weight: 700 !important;
+}
+
+.banner:has(.banner__media img) .button:hover,
+.banner:has(.banner__media img) .button--primary:hover {
+  background: transparent !important;
+  color: var(--teeb-gold) !important;
+  border-color: var(--teeb-gold) !important;
+}
+
+.banner:has(.banner__media img) .button--secondary {
+  background: transparent !important;
+  color: var(--teeb-gold) !important;
+  border-color: rgba(240, 196, 23, 0.7) !important;
+}
+
+.banner:has(.banner__media img) .button--secondary:hover {
+  background: var(--teeb-gold) !important;
+  color: var(--teeb-ink) !important;
+  border-color: var(--teeb-gold) !important;
+}
+
+/* Hero heading — Playfair, large (applies to both states) */
 .banner__heading {
   font-family: 'Playfair Display', serif !important;
   font-size: clamp(3.2rem, 6vw, 6rem) !important;
   font-weight: 700 !important;
-  color: var(--teeb-ink-mid) !important;
   line-height: 1.15 !important;
   letter-spacing: 0.01em !important;
   margin-bottom: 1.6rem !important;
@@ -943,7 +1009,6 @@ button[type="submit"].button:hover {
 /* Hero subtext */
 .banner__text p {
   font-family: 'Open Sans', sans-serif;
-  color: var(--teeb-ink-soft);
   font-size: 1.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
