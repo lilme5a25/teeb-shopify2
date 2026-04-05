@@ -146,6 +146,7 @@
                   {{- 'products.product.on_sale' | t -}}
                 {%- endif -%}
               </span>
+            {%- endif -%}
             {%- liquid
               assign card_variant_1 = card_product.selected_or_first_available_variant
               if card_variant_1.inventory_management == 'shopify' and card_variant_1.inventory_policy != 'continue'
@@ -664,6 +665,7 @@
                 {{- 'products.product.on_sale' | t -}}
               {%- endif -%}
             </span>
+          {%- endif -%}
           {%- liquid
             assign card_variant_2 = card_product.selected_or_first_available_variant
             if card_variant_2.inventory_management == 'shopify' and card_variant_2.inventory_policy != 'continue'
